@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Mi Compra - Ferramas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #f1f5f9;
+        color: #0f172a;
+      }
+
+      header {
+        background: #0f172a;
+
+        color: white;
+
+        padding: 20px 60px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .logo {
+        font-size: 30px;
+
+        font-weight: 700;
+
+        color: #f59e0b;
+
+        cursor: pointer;
+      }
+
+      nav {
+        display: flex;
+
+        gap: 15px;
+
+        align-items: center;
+      }
+
+      nav button {
+        background: transparent;
+
+        border: 2px solid #334155;
+
+        color: white;
+
+        padding: 10px 18px;
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        font-weight: 500;
+      }
+
+      nav button:hover {
+        background: #f59e0b;
+
+        border-color: #f59e0b;
+      }
+
+      .usuario-menu {
+        position: relative;
+      }
+
+      .menu-desplegable {
+        display: none;
+
+        flex-direction: column;
+
+        position: absolute;
+
+        top: 55px;
+        right: 0;
+
+        background: white;
+
+        border-radius: 12px;
+
+        overflow: hidden;
+
+        min-width: 180px;
+
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+        z-index: 1000;
+      }
+
+      .menu-desplegable button {
+        border: none;
+
+        border-radius: 0;
+
+        color: #0f172a;
+
+        background: white;
+
+        text-align: left;
+
+        padding: 15px;
+
+        width: 100%;
+      }
+
+      .menu-desplegable button:hover {
+        background: #f1f5f9;
+      }
+
+      .contenedor {
+        padding: 60px;
+      }
+
+      .titulo {
+        text-align: center;
+
+        font-size: 45px;
+
+        margin-bottom: 50px;
+      }
+
+      .contenido {
+        display: grid;
+
+        grid-template-columns: 2fr 1fr;
+
+        gap: 30px;
+      }
+
+      .carrito {
+        background: white;
+
+        border-radius: 25px;
+
+        padding: 30px;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .producto {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        padding: 20px 0;
+
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .producto-info h3 {
+        margin-bottom: 8px;
+      }
+
+      .producto-info p {
+        color: #64748b;
+      }
+
+      .eliminar {
+        background: #dc2626;
+
+        border: none;
+
+        color: white;
+
+        padding: 10px 14px;
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        font-weight: 600;
+      }
+
+      .eliminar:hover {
+        background: #b91c1c;
+      }
+
+      .resumen {
+        background: white;
+
+        border-radius: 25px;
+
+        padding: 30px;
+
+        height: fit-content;
+
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .resumen h2 {
+        margin-bottom: 25px;
+      }
+
+      .linea {
+        display: flex;
+
+        justify-content: space-between;
+
+        margin-bottom: 18px;
+
+        font-size: 17px;
+      }
+
+      .total {
+        font-size: 24px;
+
+        font-weight: 700;
+
+        margin-top: 25px;
+
+        color: #f59e0b;
+      }
+
+      .usuario {
+        margin-top: 25px;
+
+        padding: 18px;
+
+        border-radius: 15px;
+
+        background: #f8fafc;
+      }
+
+      .usuario h3 {
+        margin-bottom: 10px;
+      }
+
+      .acciones {
+        margin-top: 30px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 15px;
+      }
+
+      .acciones button {
+        border: none;
+
+        padding: 16px;
+
+        border-radius: 14px;
+
+        cursor: pointer;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        transition: 0.3s;
+      }
+
+      .tarjeta {
+        background: #0f172a;
+
+        color: white;
+      }
+
+      .tarjeta:hover {
+        background: #f59e0b;
+      }
+
+      .transferencia {
+        background: #16a34a;
+
+        color: white;
+      }
+
+      .transferencia:hover {
+        background: #15803d;
+      }
+
+      .resultado {
+        margin-top: 25px;
+
+        padding: 20px;
+
+        border-radius: 15px;
+
+        background: #f8fafc;
+
+        display: none;
+      }
+
+      .resultado h3 {
+        margin-bottom: 10px;
+      }
+
+      footer {
+        margin-top: 60px;
+
+        background: #020617;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 20px;
+      }
+
+      @media (max-width: 900px) {
+        .contenido {
+          grid-template-columns: 1fr;
+        }
+
+        .contenedor {
+          padding: 30px 20px;
+        }
+
+        header {
+          flex-direction: column;
+
+          gap: 20px;
+
+          padding: 25px;
+        }
+
+        nav {
+          flex-wrap: wrap;
+
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo" onclick="window.location.href = 'index.html'">
+        Ferramas
+      </div>
+
+      <nav id="navbar"></nav>
+    </header>
+
+    <div class="contenedor">
+      <h1 class="titulo">Mi Compra</h1>
+
+      <div class="contenido">
+        <div class="carrito">
+          <div id="listaProductos"></div>
+        </div>
+
+        <div class="resumen">
+          <h2>Resumen</h2>
+
+          <div class="linea">
+            <span>Subtotal</span>
+
+            <span id="subtotal">$0</span>
+          </div>
+
+          <div class="linea">
+            <span>Descuento</span>
+
+            <span id="descuento">0%</span>
+          </div>
+
+          <div class="linea total">
+            <span>Total</span>
+
+            <span id="total">$0</span>
+          </div>
+
+          <div class="usuario" id="datosUsuario"></div>
+
+          <div class="acciones">
+            <button class="tarjeta" onclick="pagarTarjeta()">
+              Pagar con Tarjeta
+            </button>
+
+            <button class="transferencia" onclick="pagarTransferencia()">
+              Pagar con Transferencia
+            </button>
+          </div>
+
+          <div class="resultado" id="resultado"></div>
+        </div>
+      </div>
+    </div>
+
+    <footer>© 2026 Ferramas - Todos los derechos reservados</footer>
+
+    <script>
+      function cargarNavbar() {
+        const navbar = document.getElementById("navbar");
+
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        if (usuario) {
+          navbar.innerHTML = `
+
+            <div class="usuario-menu">
+
+              <button onclick="toggleMenu()">
+                Hola ${usuario.nombre} ▼
+              </button>
+
+              <div
+                id="menuDesplegable"
+                class="menu-desplegable"
+              >
+
+                <button
+                  onclick="window.location.href='perfil.html'"
+                >
+                  Perfil
+                </button>
+
+                <button onclick="cerrarSesion()">
+                  Cerrar Sesión
+                </button>
+
+              </div>
+
+            </div>
+
+          `;
+        } else {
+          navbar.innerHTML = `
+
+            <button onclick="window.location.href='login.html'">
+              Login
+            </button>
+
+          `;
+        }
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById("menuDesplegable");
+
+        if (menu.style.display === "flex") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "flex";
+        }
+      }
+
+      function cerrarSesion() {
+        localStorage.removeItem("usuario");
+
+        window.location.href = "index.html";
+      }
+
+      function cargarCarrito() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        const lista = document.getElementById("listaProductos");
+
+        lista.innerHTML = "";
+
+        if (carrito.length === 0) {
+          lista.innerHTML = `
+            <h2>
+              No hay productos en el carrito
+            </h2>
+          `;
+
+          actualizarResumen();
+
+          return;
+        }
+
+        carrito.forEach((producto, index) => {
+          lista.innerHTML += `
+
+            <div class="producto">
+
+              <div class="producto-info">
+
+                <h3>${producto.nombre}</h3>
+
+                <p>
+                  Precio:
+                  $${producto.precio.toLocaleString()}
+                </p>
+
+              </div>
+
+              <button
+                class="eliminar"
+                onclick="eliminarProducto(${index})"
+              >
+                Eliminar
+              </button>
+
+            </div>
+
+          `;
+        });
+
+        actualizarResumen();
+      }
+
+      function eliminarProducto(index) {
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        carrito.splice(index, 1);
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+
+        cargarCarrito();
+      }
+
+      function actualizarResumen() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        let subtotal = 0;
+
+        carrito.forEach((producto) => {
+          subtotal += producto.precio;
+        });
+
+        let descuento = 0;
+
+        if (usuario) {
+          descuento = usuario.descuento || 10;
+        }
+
+        const total = subtotal - subtotal * (descuento / 100);
+
+        document.getElementById("subtotal").innerText =
+          "$" + subtotal.toLocaleString();
+
+        document.getElementById("descuento").innerText = descuento + "%";
+
+        document.getElementById("total").innerText =
+          "$" + total.toLocaleString();
+
+        const datosUsuario = document.getElementById("datosUsuario");
+
+        if (usuario) {
+          datosUsuario.innerHTML = `
+
+            <h3>Cliente</h3>
+
+            <p>
+              ${usuario.nombre}
+            </p>
+
+            <p>
+              Descuento aplicado:
+              ${descuento}%
+            </p>
+
+          `;
+        } else {
+          datosUsuario.innerHTML = `
+
+            <h3>
+              No has iniciado sesión
+            </h3>
+
+            <p>
+              Inicia sesión para aplicar descuentos.
+            </p>
+
+          `;
+        }
+      }
+
+      async function pagarTarjeta() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        if (carrito.length === 0) {
+          alert("El carrito está vacío");
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/crear-pago", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              productos: carrito,
+            }),
+          });
+
+          const data = await response.json();
+
+          window.location.href = data.init_point;
+        } catch (error) {
+          alert("Error al procesar el pago");
+        }
+      }
+
+      function pagarTransferencia() {
+        const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        if (carrito.length === 0) {
+          alert("El carrito está vacío");
+
+          return;
+        }
+
+        const resultado = document.getElementById("resultado");
+
+        resultado.style.display = "block";
+
+        resultado.innerHTML = `
+
+          <h3>
+            Datos para Transferencia
+          </h3>
+
+          <p>
+            Banco: Banco Estado
+          </p>
+
+          <p>
+            Titular: Ferramas SPA
+          </p>
+
+          <p>
+            Cuenta Corriente:
+            123456789
+          </p>
+
+          <p>
+            Correo:
+            pagos@ferramas.cl
+          </p>
+
+          <p>
+            Una vez realizada la transferencia,
+            envia el comprobante a pagos@ferramas.cl.
+          </p>
+
+        `;
+      }
+
+      cargarNavbar();
+
+      cargarCarrito();
+    </script>
+  </body>
+</html>

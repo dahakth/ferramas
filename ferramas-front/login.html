@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login - Ferramas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+
+        background:
+          linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)),
+          url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600&auto=format&fit=crop");
+
+        background-size: cover;
+        background-position: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 30px;
+      }
+
+      .login-container {
+        width: 100%;
+        max-width: 460px;
+
+        background: white;
+
+        border-radius: 25px;
+
+        padding: 45px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo {
+        text-align: center;
+
+        font-size: 38px;
+        font-weight: 700;
+
+        color: #f59e0b;
+
+        margin-bottom: 10px;
+
+        cursor: pointer;
+      }
+
+      .titulo {
+        text-align: center;
+
+        color: #0f172a;
+
+        font-size: 28px;
+
+        margin-bottom: 10px;
+      }
+
+      .subtitulo {
+        text-align: center;
+
+        color: #64748b;
+
+        margin-bottom: 35px;
+
+        line-height: 1.6;
+      }
+
+      .grupo-input {
+        margin-bottom: 20px;
+      }
+
+      .grupo-input label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-weight: 500;
+
+        color: #334155;
+      }
+
+      .grupo-input input {
+        width: 100%;
+
+        padding: 15px;
+
+        border-radius: 12px;
+
+        border: 2px solid #e2e8f0;
+
+        font-size: 15px;
+
+        transition: 0.3s;
+      }
+
+      .grupo-input input:focus {
+        outline: none;
+
+        border-color: #f59e0b;
+      }
+
+      .boton-login {
+        width: 100%;
+
+        padding: 15px;
+
+        background: #0f172a;
+
+        color: white;
+
+        border: none;
+
+        border-radius: 12px;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        margin-top: 10px;
+      }
+
+      .boton-login:hover {
+        background: #f59e0b;
+      }
+
+      .crear-cuenta {
+        text-align: center;
+
+        margin-top: 25px;
+
+        color: #64748b;
+      }
+
+      .crear-cuenta a {
+        color: #f59e0b;
+
+        text-decoration: none;
+
+        font-weight: 600;
+      }
+
+      .resultado {
+        margin-top: 25px;
+
+        padding: 18px;
+
+        border-radius: 15px;
+
+        background: #f8fafc;
+
+        display: none;
+      }
+
+      .resultado h3 {
+        color: #0f172a;
+
+        margin-bottom: 8px;
+      }
+
+      .resultado p {
+        color: #475569;
+
+        margin-bottom: 5px;
+      }
+
+      .volver {
+        position: absolute;
+
+        top: 25px;
+        left: 25px;
+      }
+
+      .volver button {
+        background: white;
+
+        border: none;
+
+        padding: 12px 18px;
+
+        border-radius: 12px;
+
+        cursor: pointer;
+
+        font-weight: 600;
+
+        color: #0f172a;
+
+        transition: 0.3s;
+      }
+
+      .volver button:hover {
+        background: #f59e0b;
+
+        color: white;
+      }
+
+      @media (max-width: 500px) {
+        .login-container {
+          padding: 30px;
+        }
+
+        .titulo {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="volver">
+      <button onclick="window.location.href = 'index.html'">
+        ← Volver al Inicio
+      </button>
+    </div>
+
+    <div class="login-container">
+      <div class="logo" onclick="window.location.href = 'index.html'">
+        Ferramas
+      </div>
+
+      <h1 class="titulo">Iniciar Sesión</h1>
+
+      <p class="subtitulo">
+        Accede a tu cuenta para visualizar descuentos y completar tus compras.
+      </p>
+
+      <div class="grupo-input">
+        <label> Correo Electrónico </label>
+
+        <input type="email" id="correo" placeholder="Ingrese su correo" />
+      </div>
+
+      <div class="grupo-input">
+        <label> Contraseña </label>
+
+        <input
+          type="password"
+          id="password"
+          placeholder="Ingrese su contraseña"
+        />
+      </div>
+
+      <button class="boton-login" onclick="login()">Ingresar</button>
+
+      <div class="crear-cuenta">
+        ¿No tienes cuenta?
+
+        <a href="registro.html"> Crear Cuenta </a>
+      </div>
+
+      <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+      async function login() {
+        const correo = document.getElementById("correo").value;
+
+        const password = document.getElementById("password").value;
+
+        const resultado = document.getElementById("resultado");
+
+        if (correo === "" || password === "") {
+          alert("Complete todos los campos");
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              correo,
+              password,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            resultado.style.display = "block";
+
+            resultado.innerHTML = `
+          <h3>
+            Bienvenido ${data.usuario.nombre}
+          </h3>
+
+          <p>
+            Correo: ${data.usuario.correo}
+          </p>
+
+          <p>
+            Descuento aplicado: 10%
+          </p>
+        `;
+
+            localStorage.setItem(
+              "usuario",
+              JSON.stringify({
+                nombre: data.usuario.nombre,
+                correo: data.usuario.correo,
+                descuento: 10,
+              }),
+            );
+
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1500);
+          } else {
+            resultado.style.display = "block";
+
+            resultado.innerHTML = `
+          <p>
+            Credenciales incorrectas
+          </p>
+        `;
+          }
+        } catch (error) {
+          alert("Error al conectar con el servidor");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Equipos de Seguridad - Ferramas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #f1f5f9;
+        color: #0f172a;
+      }
+
+      header {
+        background: #0f172a;
+        padding: 20px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+      .logo {
+        font-size: 32px;
+        font-weight: 700;
+        color: #f59e0b;
+        cursor: pointer;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      nav button {
+        background: transparent;
+        border: 2px solid #334155;
+        color: white;
+        padding: 10px 18px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 500;
+      }
+
+      nav button:hover {
+        background: #f59e0b;
+        border-color: #f59e0b;
+      }
+
+      .usuario-menu {
+        position: relative;
+      }
+
+      .menu-desplegable {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 55px;
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        min-width: 180px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+      }
+
+      .menu-desplegable button {
+        border: none;
+        border-radius: 0;
+        color: #0f172a;
+        background: white;
+        text-align: left;
+        padding: 15px;
+        width: 100%;
+      }
+
+      .menu-desplegable button:hover {
+        background: #f1f5f9;
+      }
+
+      .banner {
+        min-height: 350px;
+
+        background:
+          linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)),
+          url("img/seguridad1.jpg");
+
+        background-size: cover;
+        background-position: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        text-align: center;
+
+        padding: 30px;
+      }
+
+      .banner-contenido {
+        max-width: 800px;
+      }
+
+      .banner h1 {
+        color: white;
+        font-size: 58px;
+        margin-bottom: 20px;
+      }
+
+      .banner p {
+        color: #cbd5e1;
+        font-size: 20px;
+        line-height: 1.7;
+      }
+
+      .productos {
+        padding: 70px 60px;
+      }
+
+      .productos h2 {
+        text-align: center;
+        font-size: 42px;
+        margin-bottom: 50px;
+      }
+
+      .grid-productos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .producto {
+        background: white;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+      }
+
+      .producto:hover {
+        transform: translateY(-8px);
+      }
+
+      .producto img {
+        width: 100%;
+        height: 280px;
+        object-fit: contain;
+        background: white;
+        padding: 15px;
+      }
+
+      .producto-contenido {
+        padding: 25px;
+      }
+
+      .producto h3 {
+        margin-bottom: 12px;
+        font-size: 24px;
+        color: #0f172a;
+      }
+
+      .producto p {
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .precio {
+        display: block;
+        font-size: 28px;
+        font-weight: 700;
+        color: #f59e0b;
+        margin-bottom: 20px;
+      }
+
+      .producto button {
+        width: 100%;
+        border: none;
+        background: #0f172a;
+        color: white;
+        padding: 15px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .producto button:hover {
+        background: #f59e0b;
+      }
+
+      footer {
+        background: #020617;
+        color: #94a3b8;
+        text-align: center;
+        padding: 25px;
+      }
+
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          gap: 20px;
+          padding: 25px;
+        }
+
+        nav {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .banner h1 {
+          font-size: 40px;
+        }
+
+        .banner p {
+          font-size: 17px;
+        }
+
+        .productos {
+          padding: 50px 20px;
+        }
+      }
+      .notificacion {
+        position: fixed;
+
+        top: 25px;
+        right: 25px;
+
+        background: #0f172a;
+
+        color: white;
+
+        padding: 16px 22px;
+
+        border-radius: 14px;
+
+        font-weight: 600;
+
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+        opacity: 0;
+
+        transform: translateY(-20px);
+
+        transition: 0.4s;
+
+        z-index: 9999;
+      }
+
+      .notificacion.mostrar {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo" onclick="window.location.href = 'index.html'">
+        Ferramas
+      </div>
+
+      <nav id="navbar"></nav>
+    </header>
+
+    <section class="banner">
+      <div class="banner-contenido">
+        <h1>Equipos de Seguridad</h1>
+
+        <p>
+          Protección profesional para trabajos industriales, construcción y
+          proyectos de alto rendimiento.
+        </p>
+      </div>
+    </section>
+
+    <section class="productos">
+      <h2>Productos de Seguridad</h2>
+
+      <div class="grid-productos">
+        <div class="producto">
+          <img src="img/cascoI.png" alt="Casco Industrial" />
+
+          <div class="producto-contenido">
+            <h3>Casco Industrial</h3>
+
+            <p>
+              Casco de seguridad resistente para trabajos profesionales y zonas
+              de construcción.
+            </p>
+
+            <span class="precio">$24.990</span>
+
+            <button onclick="agregarCarrito('Casco Industrial', 24990)">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+
+        <div class="producto">
+          <img src="img/Guantes.webp" alt="Guantes de Seguridad" />
+
+          <div class="producto-contenido">
+            <h3>Guantes de Seguridad</h3>
+
+            <p>
+              Protección avanzada para manipulación de materiales y trabajo
+              pesado.
+            </p>
+
+            <span class="precio">$12.990</span>
+
+            <button onclick="agregarCarrito('Guantes de Seguridad', 12990)">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+
+        <div class="producto">
+          <img src="img/Lentes.png" alt="Lentes de Protección" />
+
+          <div class="producto-contenido">
+            <h3>Lentes de Protección</h3>
+
+            <p>
+              Lentes certificados contra impactos, partículas y riesgos
+              industriales.
+            </p>
+
+            <span class="precio">$8.990</span>
+
+            <button onclick="agregarCarrito('Lentes de Protección', 8990)">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Ferramas - Equipos de Seguridad</footer>
+
+    <script>
+      function cargarNavbar() {
+        const navbar = document.getElementById("navbar");
+
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        if (usuario) {
+          navbar.innerHTML = `
+
+            <button onclick="window.location.href='compra.html'">
+              Mi Compra
+            </button>
+
+            <div class="usuario-menu">
+
+              <button onclick="toggleMenu()">
+
+                Hola ${usuario.nombre} ▼
+
+              </button>
+
+              <div
+                id="menuDesplegable"
+                class="menu-desplegable">
+
+                <button
+                  onclick="window.location.href='perfil.html'">
+
+                  Perfil
+
+                </button>
+
+                <button onclick="cerrarSesion()">
+
+                  Cerrar Sesión
+
+                </button>
+
+              </div>
+
+            </div>
+
+          `;
+        } else {
+          navbar.innerHTML = `
+
+            <button onclick="window.location.href='login.html'">
+              Login
+            </button>
+
+            <button onclick="window.location.href='compra.html'">
+              Mi Compra
+            </button>
+
+          `;
+        }
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById("menuDesplegable");
+
+        if (menu.style.display === "flex") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "flex";
+        }
+      }
+
+      function cerrarSesion() {
+        localStorage.removeItem("usuario");
+
+        window.location.reload();
+      }
+      function mostrarNotificacion(texto) {
+        const notificacion = document.getElementById("notificacion");
+
+        notificacion.innerText = texto;
+
+        notificacion.classList.add("mostrar");
+
+        setTimeout(() => {
+          notificacion.classList.remove("mostrar");
+        }, 3000);
+      }
+      function agregarCarrito(nombre, precio) {
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        carrito.push({
+          nombre,
+          precio,
+        });
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+
+        mostrarNotificacion("🛒 " + nombre + " agregado al carrito");
+      }
+
+      cargarNavbar();
+    </script>
+    <div id="notificacion" class="notificacion"></div>
+  </body>
+</html>

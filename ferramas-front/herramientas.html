@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Herramientas Manuales - Ferramas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #f4f6f8;
+        color: #1e293b;
+      }
+
+      header {
+        background: #0f172a;
+        color: white;
+
+        padding: 20px 60px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      }
+
+      .logo {
+        font-size: 30px;
+        font-weight: 700;
+        color: #f59e0b;
+        cursor: pointer;
+      }
+
+      nav {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+
+      nav button {
+        background: transparent;
+        border: 2px solid #334155;
+
+        color: white;
+
+        padding: 10px 18px;
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+
+        font-weight: 500;
+      }
+
+      nav button:hover {
+        background: #f59e0b;
+        border-color: #f59e0b;
+      }
+
+      .usuario-menu {
+        position: relative;
+      }
+
+      .menu-desplegable {
+        display: none;
+        flex-direction: column;
+
+        position: absolute;
+
+        top: 55px;
+        right: 0;
+
+        background: white;
+
+        border-radius: 12px;
+
+        overflow: hidden;
+
+        min-width: 180px;
+
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+
+        z-index: 1000;
+      }
+
+      .menu-desplegable button {
+        border: none;
+        border-radius: 0;
+
+        color: #0f172a;
+
+        background: white;
+
+        text-align: left;
+
+        padding: 15px;
+
+        width: 100%;
+      }
+
+      .menu-desplegable button:hover {
+        background: #f1f5f9;
+      }
+
+      .hero {
+        background:
+          linear-gradient(rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.88)),
+          url("img/Herramientas1.png");
+
+        background-size: cover;
+        background-position: center;
+
+        padding: 100px 40px;
+
+        text-align: center;
+
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        max-width: 800px;
+        margin: auto;
+
+        font-size: 18px;
+
+        line-height: 1.8;
+
+        color: #e2e8f0;
+      }
+      .productos {
+        padding: 70px 60px;
+      }
+
+      .grid-productos {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+      }
+
+      .producto {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition: 0.3s;
+      }
+
+      .producto:hover {
+        transform: translateY(-8px);
+      }
+
+      .producto img {
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+        background: #fff;
+        padding: 10px;
+      }
+      .producto-contenido {
+        padding: 20px;
+      }
+
+      .contenido {
+        padding: 25px;
+      }
+
+      .contenido h3 {
+        margin-bottom: 12px;
+
+        color: #0f172a;
+
+        font-size: 24px;
+      }
+
+      .contenido p {
+        color: #64748b;
+
+        line-height: 1.6;
+
+        margin-bottom: 18px;
+      }
+
+      .precio {
+        font-size: 22px;
+        font-weight: 700;
+        color: #f59e0b;
+
+        margin-bottom: 20px;
+      }
+
+      .contenido button {
+        width: 100%;
+
+        padding: 14px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        background: #0f172a;
+
+        color: white;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .contenido button:hover {
+        background: #f59e0b;
+      }
+
+      footer {
+        background: #020617;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 20px;
+      }
+
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          gap: 20px;
+          padding: 25px;
+        }
+
+        .hero h1 {
+          font-size: 40px;
+        }
+
+        .productos {
+          padding: 50px 20px;
+        }
+      }
+      .notificacion {
+        position: fixed;
+
+        top: 25px;
+        right: 25px;
+
+        background: #0f172a;
+
+        color: white;
+
+        padding: 16px 22px;
+
+        border-radius: 14px;
+
+        font-weight: 600;
+
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+        opacity: 0;
+
+        transform: translateY(-20px);
+
+        transition: 0.4s;
+
+        z-index: 9999;
+      }
+
+      .notificacion.mostrar {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo" onclick="window.location.href = 'index.html'">
+        Ferramas
+      </div>
+
+      <nav id="navbar"></nav>
+    </header>
+
+    <section class="hero">
+      <h1>Herramientas Manuales</h1>
+
+      <p>
+        Encuentra herramientas resistentes y profesionales para trabajos de
+        construcción, reparación y uso industrial.
+      </p>
+    </section>
+
+    <section class="productos">
+      <div class="grid-productos">
+        <div class="producto">
+          <div class="contenido">
+            <img src="img/Martillo.png" alt="Martillo Profesional" />
+            <div class="producto-contenido"></div>
+            <h3>Martillo Profesional</h3>
+
+            <p>
+              Martillo reforzado de acero con mango ergonómico antideslizante.
+            </p>
+
+            <div class="precio">$12.990</div>
+
+            <button onclick="agregarCarrito('Martillo Profesional', 12990)">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+
+        <div class="producto">
+          <div class="contenido">
+            <img
+              src="img/Desatornilladores.png"
+              alt="Set de Destornilladores"
+            />
+            <div class="producto-contenido"></div>
+            <h3>Set de Destornilladores</h3>
+
+            <p>
+              Kit profesional de destornilladores planos y cruz para trabajos
+              técnicos.
+            </p>
+
+            <div class="precio">$18.990</div>
+
+            <button onclick="agregarCarrito('Set de Destornilladores', 18990)">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+
+        <div class="producto">
+          <div class="contenido">
+            <img src="img/LlaveInglesa.png" alt="Llave Inglesa Ajustable" />
+            <div class="producto-contenido"></div>
+            <h3>Llave Inglesa Ajustable</h3>
+
+            <p>
+              Herramienta ajustable de alta resistencia ideal para múltiples
+              aplicaciones.
+            </p>
+
+            <div class="precio">$9.990</div>
+
+            <button onclick="agregarCarrito('Llave Inglesa Ajustable', 9990)">
+              Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2026 Ferramas - Herramientas Manuales</footer>
+
+    <script>
+      function mostrarNotificacion(texto) {
+        const notificacion = document.getElementById("notificacion");
+
+        notificacion.innerText = texto;
+
+        notificacion.classList.add("mostrar");
+
+        setTimeout(() => {
+          notificacion.classList.remove("mostrar");
+        }, 3000);
+      }
+      function cargarNavbar() {
+        const navbar = document.getElementById("navbar");
+
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        if (usuario) {
+          navbar.innerHTML = `
+
+            <button onclick="window.location.href='compra.html'">
+              Mi Compra
+            </button>
+
+            <div class="usuario-menu">
+
+              <button onclick="toggleMenu()">
+                Hola ${usuario.nombre} ▼
+              </button>
+
+              <div
+                id="menuDesplegable"
+                class="menu-desplegable">
+
+                <button
+                  onclick="window.location.href='perfil.html'">
+
+                  Perfil
+
+                </button>
+
+                <button onclick="cerrarSesion()">
+
+                  Cerrar Sesión
+
+                </button>
+
+              </div>
+
+            </div>
+
+          `;
+        } else {
+          navbar.innerHTML = `
+
+            <button onclick="window.location.href='login.html'">
+              Login
+            </button>
+
+            <button onclick="window.location.href='compra.html'">
+              Mi Compra
+            </button>
+
+          `;
+        }
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById("menuDesplegable");
+
+        if (menu.style.display === "flex") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "flex";
+        }
+      }
+
+      function cerrarSesion() {
+        localStorage.removeItem("usuario");
+
+        window.location.reload();
+      }
+
+      function agregarCarrito(nombre, precio) {
+        let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+        carrito.push({
+          nombre: nombre,
+          precio: precio,
+        });
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+
+        mostrarNotificacion("🛒 " + nombre + " agregado al carrito");
+      }
+
+      cargarNavbar();
+    </script>
+    <div id="notificacion" class="notificacion"></div>
+  </body>
+</html>
