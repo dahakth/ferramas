@@ -557,50 +557,53 @@
         if (usuario) {
           navbar.innerHTML = `
 
-        <button onclick="window.location.href='compra.html'">
-          Mi Compra
-        </button>
-
-        <div class="usuario-menu">
-
-          <button onclick="toggleMenu()">
-            Hola ${usuario.nombre} ▼
+          <button onclick="window.location.href='contacto.html'">
+            Contacto
           </button>
 
-          <div
-            id="menuDesplegable"
-            class="menu-desplegable">
+          <button onclick="window.location.href='compra.html'">
+            Mi Compra
+          </button>
 
-            <button
-              onclick="window.location.href='perfil.html'">
+          <div class="usuario-menu">
 
-              Perfil
-
+            <button onclick="toggleMenu()">
+              Hola ${usuario.nombre} ▼
             </button>
 
-            <button onclick="cerrarSesion()">
+            <div
+              id="menuDesplegable"
+              class="menu-desplegable">
 
-              Cerrar Sesión
+              <button onclick="window.location.href='perfil.html'">
+                Perfil
+              </button>
 
-            </button>
+              <button onclick="cerrarSesion()">
+                Cerrar Sesión
+              </button>
+
+            </div>
 
           </div>
 
-        </div>
-
-      `;
+        `;
         } else {
           navbar.innerHTML = `
 
-        <button onclick="window.location.href='login.html'">
-          Login
-        </button>
+          <button onclick="window.location.href='contacto.html'">
+            Contacto
+          </button>
 
-        <button onclick="window.location.href='compra.html'">
-          Mi Compra
-        </button>
+          <button onclick="window.location.href='login.html'">
+            Login
+          </button>
 
-      `;
+          <button onclick="window.location.href='compra.html'">
+            Mi Compra
+          </button>
+
+        `;
         }
       }
 

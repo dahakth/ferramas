@@ -63,6 +63,51 @@ app.post("/suscribirse", async (req, res) => {
     });
   }
 });
+app.post("/contacto", async (req, res) => {
+  const { nombre, correo, mensaje } = req.body;
+
+  try {
+    await transporter.sendMail({
+      from: "Ferramas <alaneduardomolina15@gmail.com>",
+
+      to: "alaneduardomolina15@gmail.com",
+
+      subject: "Nuevo mensaje de contacto - Ferramas",
+
+      html: `
+        <h2>Nuevo mensaje recibido</h2>
+
+        <p>
+          <strong>Nombre:</strong>
+          ${nombre}
+        </p>
+
+        <p>
+          <strong>Correo:</strong>
+          ${correo}
+        </p>
+
+        <p>
+          <strong>Mensaje:</strong>
+        </p>
+
+        <p>
+          ${mensaje}
+        </p>
+      `,
+    });
+
+    res.json({
+      mensaje: "Mensaje enviado correctamente",
+    });
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      mensaje: "Error al enviar mensaje",
+    });
+  }
+});
 app.get("/productos", (req, res) => {
   const sql = "SELECT * FROM productos";
 

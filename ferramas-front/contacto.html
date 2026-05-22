@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Contacto - Ferramas</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+
+        background:
+          linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)),
+          url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop");
+
+        background-size: cover;
+        background-position: center;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 30px;
+      }
+
+      .contenedor {
+        width: 100%;
+        max-width: 550px;
+
+        background: white;
+
+        border-radius: 25px;
+
+        padding: 40px;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .logo {
+        text-align: center;
+
+        font-size: 38px;
+        font-weight: 700;
+
+        color: #f59e0b;
+
+        margin-bottom: 10px;
+
+        cursor: pointer;
+      }
+
+      h1 {
+        text-align: center;
+
+        color: #0f172a;
+
+        margin-bottom: 10px;
+      }
+
+      .descripcion {
+        text-align: center;
+
+        color: #64748b;
+
+        margin-bottom: 30px;
+
+        line-height: 1.6;
+      }
+
+      .grupo {
+        margin-bottom: 20px;
+      }
+
+      .grupo label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-weight: 500;
+
+        color: #334155;
+      }
+
+      .grupo input,
+      .grupo textarea {
+        width: 100%;
+
+        padding: 15px;
+
+        border-radius: 12px;
+
+        border: 2px solid #e2e8f0;
+
+        font-size: 15px;
+
+        transition: 0.3s;
+      }
+
+      .grupo input:focus,
+      .grupo textarea:focus {
+        outline: none;
+
+        border-color: #f59e0b;
+      }
+
+      textarea {
+        resize: none;
+
+        height: 140px;
+      }
+
+      .btn {
+        width: 100%;
+
+        padding: 15px;
+
+        background: #0f172a;
+
+        color: white;
+
+        border: none;
+
+        border-radius: 12px;
+
+        font-size: 16px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background: #f59e0b;
+      }
+
+      .volver {
+        position: absolute;
+
+        top: 25px;
+        left: 25px;
+      }
+
+      .volver button {
+        background: white;
+
+        border: none;
+
+        padding: 12px 18px;
+
+        border-radius: 12px;
+
+        cursor: pointer;
+
+        font-weight: 600;
+
+        color: #0f172a;
+
+        transition: 0.3s;
+      }
+
+      .volver button:hover {
+        background: #f59e0b;
+
+        color: white;
+      }
+
+      .notificacion {
+        position: fixed;
+
+        top: 25px;
+        right: 25px;
+
+        background: #0f172a;
+
+        color: white;
+
+        padding: 16px 22px;
+
+        border-radius: 14px;
+
+        font-weight: 600;
+
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+        opacity: 0;
+
+        transform: translateY(-20px);
+
+        transition: 0.4s;
+
+        z-index: 9999;
+      }
+
+      .notificacion.mostrar {
+        opacity: 1;
+
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="volver">
+      <button onclick="window.location.href = 'index.html'">
+        ← Volver al Inicio
+      </button>
+    </div>
+
+    <div class="contenedor">
+      <div class="logo" onclick="window.location.href = 'index.html'">
+        Ferramas
+      </div>
+
+      <h1>Contacto</h1>
+
+      <p class="descripcion">
+        ¿Tienes dudas o consultas? Envíanos un mensaje y un vendedor te
+        responderá lo antes posible.
+      </p>
+
+      <div class="grupo">
+        <label>Nombre</label>
+
+        <input type="text" id="nombre" placeholder="Ingrese su nombre" />
+      </div>
+
+      <div class="grupo">
+        <label>Correo Electrónico</label>
+
+        <input type="email" id="correo" placeholder="Ingrese su correo" />
+      </div>
+
+      <div class="grupo">
+        <label>Mensaje</label>
+
+        <textarea id="mensaje" placeholder="Escriba su mensaje..."></textarea>
+      </div>
+
+      <button class="btn" onclick="enviarMensaje()">Enviar Mensaje</button>
+    </div>
+
+    <div id="notificacion" class="notificacion"></div>
+
+    <script>
+      function mostrarNotificacion(texto) {
+        const notificacion = document.getElementById("notificacion");
+
+        notificacion.innerText = texto;
+
+        notificacion.classList.add("mostrar");
+
+        setTimeout(() => {
+          notificacion.classList.remove("mostrar");
+        }, 3000);
+      }
+
+      async function enviarMensaje() {
+        const nombre = document.getElementById("nombre").value;
+
+        const correo = document.getElementById("correo").value;
+
+        const mensaje = document.getElementById("mensaje").value;
+
+        if (nombre === "" || correo === "" || mensaje === "") {
+          mostrarNotificacion("⚠️ Complete todos los campos");
+
+          return;
+        }
+
+        try {
+          const response = await fetch("http://localhost:3000/contacto", {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              nombre,
+              correo,
+              mensaje,
+            }),
+          });
+
+          const data = await response.json();
+
+          mostrarNotificacion("✅ " + data.mensaje);
+
+          document.getElementById("nombre").value = "";
+
+          document.getElementById("correo").value = "";
+
+          document.getElementById("mensaje").value = "";
+        } catch (error) {
+          mostrarNotificacion("❌ Error al enviar mensaje");
+        }
+      }
+    </script>
+  </body>
+</html>
