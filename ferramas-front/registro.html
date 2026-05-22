@@ -301,19 +301,22 @@
           return;
         }
 
-        const response = await fetch("http://localhost:3000/registro", {
-          method: "POST",
+        const response = await fetch(
+          "https://ferramas-yaig.onrender.com/registro",
+          {
+            method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              nombre,
+              correo,
+              password,
+            }),
           },
-
-          body: JSON.stringify({
-            nombre,
-            correo,
-            password,
-          }),
-        });
+        );
 
         const data = await response.json();
 

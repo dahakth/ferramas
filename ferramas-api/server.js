@@ -28,9 +28,9 @@ app.post("/crear-preferencia", async (req, res) => {
       body: {
         items,
         back_urls: {
-          success: "http://localhost:3000/success",
-          failure: "http://localhost:3000/failure",
-          pending: "http://localhost:3000/pending",
+          success: "https://ferramas-yaig.onrender.com/success",
+          failure: "https://ferramas-yaig.onrender.com/failure",
+          pending: "https://ferramas-yaig.onrender.com/pending",
         },
         auto_return: "approved",
       },
@@ -44,5 +44,5 @@ app.post("/crear-preferencia", async (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Servidor corriendo en http://localhost:3000");
+  console.log("Servidor corriendo en https://ferramas-yaig.onrender.com");
 });
