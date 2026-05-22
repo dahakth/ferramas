@@ -1,3 +1,4 @@
+require("dotenv").config();
 const db = require("./config/db");
 
 const nodemailer = require("nodemailer");
@@ -5,8 +6,8 @@ const transporter = nodemailer.createTransport({
   service: "gmail",
 
   auth: {
-    user: "alaneduardomolina15@gmail.com",
-    pass: "xkdj qqzx uher govc",
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 const express = require("express");
@@ -18,8 +19,7 @@ const app = express();
 const { MercadoPagoConfig, Preference } = require("mercadopago");
 
 const client = new MercadoPagoConfig({
-  accessToken:
-    "APP_USR-4220441137593756-051817-dcb383b90cd35ac7e844b6a9204b77cc-3410484025",
+  accessToken: process.env.MP_ACCESS_TOKEN,
 });
 
 app.use(cors());
