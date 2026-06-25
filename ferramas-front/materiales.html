@@ -341,69 +341,7 @@
         Ver precios en USD
       </button>
 
-      <div class="grid-productos">
-        <div class="producto">
-          <div class="contenido">
-            <img src="img/Cemento.webp" alt="Cemento Portland" />
-
-            <div class="producto-contenido"></div>
-
-            <h3>Cemento Portland</h3>
-
-            <p>
-              Cemento de alta resistencia ideal para construcción y trabajos
-              estructurales.
-            </p>
-
-            <div class="precio" data-precio="5990">$5.990 CLP</div>
-
-            <button onclick="agregarCarrito('Cemento Portland', 5990)">
-              Agregar al Carrito
-            </button>
-          </div>
-        </div>
-
-        <div class="producto">
-          <div class="contenido">
-            <img src="img/Madera.png" alt="Madera Estructural" />
-
-            <div class="producto-contenido"></div>
-
-            <h3>Madera Estructural</h3>
-
-            <p>
-              Madera resistente para estructuras, techumbres y proyectos de
-              carpintería.
-            </p>
-
-            <div class="precio" data-precio="12990">$12.990 CLP</div>
-
-            <button onclick="agregarCarrito('Madera Estructural', 12990)">
-              Agregar al Carrito
-            </button>
-          </div>
-        </div>
-
-        <div class="producto">
-          <div class="contenido">
-            <img src="img/Yeso.png" alt="Yeso de Construcción" />
-
-            <div class="producto-contenido"></div>
-
-            <h3>Yeso de Construcción</h3>
-
-            <p>
-              Yeso profesional ideal para acabados interiores y revestimientos.
-            </p>
-
-            <div class="precio" data-precio="4990">$4.990 CLP</div>
-
-            <button onclick="agregarCarrito('Yeso de Construcción', 4990)">
-              Agregar al Carrito
-            </button>
-          </div>
-        </div>
-      </div>
+      <div class="grid-productos" id="grid-productos"></div>
     </section>
 
     <footer>© 2026 Ferramas - Materiales Básicos</footer>
@@ -536,6 +474,40 @@
           alert("Error al obtener valor del dólar");
         }
       }
+      async function cargarProductos() {
+        try {
+          const response = await fetch(
+            "https://ferramas-yaig.onrender.com/productos",
+          );
+          const productos = await response.json();
+          const filtrados = productos.filter(
+            (p) => p.categoria === "materiales",
+          );
+          const grid = document.getElementById("grid-productos");
+          grid.innerHTML = "";
+          const imagenes = {
+            "Cemento Portland": "img/Cemento.png",
+            "Madera Estructural": "img/Madera.png",
+            "Yeso de Construcción": "img/Yeso.png",
+          };
+          filtrados.forEach((producto) => {
+            const img = imagenes[producto.nombre] || "img/default.png";
+            grid.innerHTML += `
+        <div class="producto">
+          <div class="contenido">
+            <img src="${img}" alt="${producto.nombre}" />
+            <div class="producto-contenido"></div>
+            <h3>${producto.nombre}</h3>
+            <div class="precio" data-precio="${producto.precio}">$${producto.precio.toLocaleString("es-CL")} CLP</div>
+            <button onclick="agregarCarrito('${producto.nombre}', ${producto.precio})">Agregar al Carrito</button>
+          </div>
+        </div>`;
+          });
+        } catch (error) {
+          console.error("Error cargando productos:", error);
+        }
+      }
+      cargarProductos();
     </script>
 
     <div id="notificacion" class="notificacion"></div>

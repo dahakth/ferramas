@@ -379,64 +379,7 @@
       </button>
       <h2>Productos Disponibles</h2>
 
-      <div class="grid-productos">
-        <div class="producto">
-          <img src="img/tornillo.png" />
-
-          <div class="producto-contenido">
-            <h3>Tornillos para Madera</h3>
-
-            <p>
-              Tornillos galvanizados ideales para trabajos de carpintería y
-              estructuras de madera.
-            </p>
-
-            <div class="precio" data-precio="4990">$4.990 CLP</div>
-
-            <button onclick="agregarCarrito('Tornillos para Madera', 4990)">
-              Agregar al Carro
-            </button>
-          </div>
-        </div>
-
-        <div class="producto">
-          <img src="img/Pernos.png" />
-
-          <div class="producto-contenido">
-            <h3>Pernos Hexagonales</h3>
-
-            <p>
-              Pernos de alta resistencia para fijaciones industriales y
-              estructuras metálicas.
-            </p>
-
-            <div class="precio" data-precio="8990">$8.990 CLP</div>
-
-            <button onclick="agregarCarrito('Pernos Hexagonales', 8990)">
-              Agregar al Carro
-            </button>
-          </div>
-        </div>
-
-        <div class="producto">
-          <img src="img/tarugos.webp" />
-
-          <div class="producto-contenido">
-            <h3>Tarugos de Expansión</h3>
-
-            <p>
-              Fijaciones firmes y seguras para concreto, cemento y superficies
-              sólidas.
-            </p>
-
-            <div class="precio" data-precio="3490">$3.490 CLP</div>
-
-            <button onclick="agregarCarrito('Tarugos de Expansión', 3490)">
-              Agregar al Carro
-            </button>
-          </div>
-        </div>
-      </div>
+      <div class="grid-productos" id="grid-productos"></div>
     </section>
 
     <footer>© 2026 Ferramas - Tornillos y Fijaciones</footer>
@@ -556,6 +499,40 @@
           alert("Error al obtener valor del dólar");
         }
       }
+      async function cargarProductos() {
+        try {
+          const response = await fetch(
+            "https://ferramas-yaig.onrender.com/productos",
+          );
+          const productos = await response.json();
+          const filtrados = productos.filter(
+            (p) => p.categoria === "tornillos",
+          );
+          const grid = document.getElementById("grid-productos");
+          grid.innerHTML = "";
+          const imagenes = {
+            "Tornillos para Madera": "img/Tornillos.png",
+            "Pernos Hexagonales": "img/Pernos.png",
+            "Tarugos de Expansión": "img/Tarugos.png",
+          };
+          filtrados.forEach((producto) => {
+            const img = imagenes[producto.nombre] || "img/default.png";
+            grid.innerHTML += `
+        <div class="producto">
+          <div class="contenido">
+            <img src="${img}" alt="${producto.nombre}" />
+            <div class="producto-contenido"></div>
+            <h3>${producto.nombre}</h3>
+            <div class="precio" data-precio="${producto.precio}">$${producto.precio.toLocaleString("es-CL")} CLP</div>
+            <button onclick="agregarCarrito('${producto.nombre}', ${producto.precio})">Agregar al Carrito</button>
+          </div>
+        </div>`;
+          });
+        } catch (error) {
+          console.error("Error cargando productos:", error);
+        }
+      }
+      cargarProductos();
     </script>
     <div id="notificacion" class="notificacion"></div>
   </body>
